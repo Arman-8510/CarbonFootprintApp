@@ -1,0 +1,48 @@
+﻿@model FootprintHistoryCreateModel;
+
+@{
+    ViewData["Title"] = "Add Footprint History";
+}
+
+<div class="row">
+    <div class="col-md-12 col-sm-12">
+        <h3 class="text-center">Add Footprint History</h3>
+        <hr />
+    </div>
+</div>
+<div class="row justify-content-center">
+    <div class="col-md-6 col-sm-6">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <form class="row g-3 mt-4" autocomplete="off" method="post" asp-controller="FootprintHistory" asp-action="Add">
+                    <div class="col-md-12">
+                        <label for="transportationMiles" class="form-label" asp-for="TransportationMiles">Transportation (Miles)</label>
+                        <input type="number" class="form-control" id="transportationMiles" asp-for="TransportationMiles">
+                        <span asp-validation-for="TransportationMiles" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="energyUsage" class="form-label" asp-for="EnergyUsage">Energy Usage (kWh)</label>
+                        <input type="number" class="form-control" id="energyUsage" asp-for="EnergyUsage">
+                        <span asp-validation-for="EnergyUsage" class="text-danger"></span>
+                    </div>
+                    <div class="col-md-12">
+                        <label for="note" class="form-label" asp-for="Note">Note</label>
+                        <textarea class="form-control" id="note" asp-for="Note"></textarea>
+                        <span asp-validation-for="Note" class="text-danger"></span>
+                    </div>
+                    <div class="col-12 mt-4">
+                        <button type="submit" class="btn btn-sm btn-outline-success">
+                            <i class="fa-regular fa-floppy-disk"></i> &nbsp;
+                            Save
+                        </button>
+                        <a asp-controller="FootprintHistory" asp-action="Index" class="btn btn-sm btn-outline-info">
+                            <i class="fa-solid fa-xmark"></i> &nbsp;
+                            Cancel
+                        </a>
+                    </div>
+                    <div asp-validation-summary="All" class="text-danger mt-3"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

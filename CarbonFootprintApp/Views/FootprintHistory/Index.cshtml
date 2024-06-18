@@ -1,0 +1,100 @@
+﻿@model List<FootprintHistory>;
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h3 class="text-center">Footprint History</h3>
+        <hr />
+        <a asp-controller="FootprintHistory" asp-action="Add" class="btn btn-sm btn-outline-primary">
+            <i class="fa-solid fa-user-plus"></i> &nbsp;
+            Add
+        </a>
+    </div>
+</div>
+<div class="row justify-content-center mt-4">
+    <div class="col-md-10">
+        <div class="card shadow-lg">
+            <div class="card-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Transportation Miles</th>
+                            <th>Energy Usage</th>
+                            <th>Carbon Footprint Result</th>
+                            <th>Note</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var footprintHistory in Model)
+                        {
+                            <tr>
+                                <td>@footprintHistory.TransportationMiles</td>
+                                <td>@footprintHistory.EnergyUsage</td>
+                                <td>@footprintHistory.CarbonFootprintResult</td>
+                                <td>@footprintHistory.Note</td>
+                                <td>
+                                    <a asp-controller="FootprintHistory" asp-action="Edit" asp-route-id="@footprintHistory.Id" class="btn btn-sm btn-outline-info">
+                                        <i class="fa-regular fa-pen-to-square"></i> &nbsp;
+                                        Edit
+                                    </a>
+                                    <a asp-controller="FootprintHistory" asp-action="Delete" asp-route-id="@footprintHistory.Id" class="btn btn-sm btn-outline-danger">
+                                        <i class="fa-solid fa-trash"></i> &nbsp;
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Transportation Miles</th>
+                            <th>Energy Usage</th>
+                            <th>Carbon Footprint Result</th>
+                            <th>Note</th>
+                            <th>Action</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Notifaction Message -->
+@if (TempData["FootprintHistoryCreateNotifaction"] != null)
+{
+    @section Scripts
+    {
+    <script>
+        $(function () {
+            toastr.success('@TempData["FootprintHistoryCreateNotifaction"]', "Success");
+        });
+    </script>
+    }
+}
+@if (TempData["FootprintHistoryEditNotifaction"] != null)
+{
+    @section Scripts
+    {
+    <script>
+        $(function () {
+            toastr.success('@TempData["FootprintHistoryEditNotifaction"]', "Success");
+        });
+    </script>
+    }
+}
+@if (TempData["FootprintHistoryDeleteNotifaction"] != null)
+{
+    @section Scripts
+    {
+    <script>
+        $(function () {
+            toastr.success('@TempData["FootprintHistoryDeleteNotifaction"]', "Success");
+        });
+    </script>
+    }
+}
+
